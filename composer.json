@@ -1,0 +1,26 @@
+{
+    "name": "isom/spatie-permissions-ui",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Khawlah Elshah",
+            "email": "khawlah_t@yahoo.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "require-dev": {
+        "orchestra/testbench": "^7.0@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "ISOM\\SpatiePermissionsUI\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ISOM\\SpatiePermissionsUI\\Tests\\": "tests"
+        }
+    }
+}

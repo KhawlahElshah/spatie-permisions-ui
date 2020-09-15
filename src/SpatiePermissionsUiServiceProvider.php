@@ -15,6 +15,7 @@ class SpatiePermissionsUiServiceProvider extends ServiceProvider
     {
         $this->app->make('ISOM\SpatiePermissionsUI\PermissionController');
         $this->app->make('ISOM\SpatiePermissionsUI\RoleController');
+        $this->app->make('ISOM\SpatiePermissionsUI\UserController');
     }
 
     /**
@@ -25,11 +26,14 @@ class SpatiePermissionsUiServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadRoutesFrom(__DIR__ . '/../routes.php');
-        $this->loadMigrationsFrom(__DIR__ . '/../migrations');
+        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'spatie-permissions-ui');
+        // $this->loadMigrationsFrom(__DIR__ . '/../migrations');
         $this->bootResources();
         $this->publishes([
             __DIR__ . '\PermissionController.php' => app_path('Http/Controllers/PermissionController.php'),
             __DIR__ . '\RoleController.php' => app_path('Http/Controllers/RoleController.php'),
+            __DIR__ . '\UserController.php' => app_path('Http/Controllers/UserController.php'),
+            __DIR__ . '/../resources/lang' => resource_path('lang/vendor/spatie-permissions-ui'),
         ]);
     }
 

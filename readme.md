@@ -12,15 +12,21 @@ follow the steps provides by the package on this [link](https://spatie.be/docs/l
 
 - Install it via composer:
 
-`composer require isom/spatie-permissions-ui`
+```bash
+composer require isom/spatie-permissions-ui
+```
 
 - Publish views, translation using:
 
-`php artisan vendor:publish --provider="ISOM\SpatiePermissionsUI\SpatiePermissionsUiServiceProvider" --tag="views"`
+```bash
+php artisan vendor:publish --provider="ISOM\SpatiePermissionsUI\SpatiePermissionsUiServiceProvider" --tag="views"
+```
 
 - If you want to change translations you can optionally publish them using:
 
-`php artisan vendor:publish --provider="ISOM\SpatiePermissionsUI\SpatiePermissionsUiServiceProvider" --tag="lang"`
+```bash
+php artisan vendor:publish --provider="ISOM\SpatiePermissionsUI\SpatiePermissionsUiServiceProvider" --tag="lang"
+```
 
 ## Usage
 
@@ -30,4 +36,6 @@ You can find then **permissions, roles, users roles and permissions attachment**
 
 If you need to update the controllers, you can publish them to your project using:
 
-`php artisan vendor:publish --provider="ISOM\SpatiePermissionsUI\SpatiePermissionsUiServiceProvider" --tag="controllers"`
+```bash
+php artisan vendor:publish --provider="ISOM\SpatiePermissionsUI\SpatiePermissionsUiServiceProvider" --tag="controllers"
+```

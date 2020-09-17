@@ -30,7 +30,7 @@ php artisan vendor:publish --provider="ISOM\SpatiePermissionsUI\SpatiePermission
 
 ## Usage
 
-You can find then **permissions, roles, users roles and permissions attachment** on `resources/views` and `resources/views/components` you can change easily change the layouts and elements classes to be fimilair with your project.
+You can find then **permissions, roles, users roles and permissions attachment** on `resources/views` and `resources/views/components` you can easily change the layouts and elements classes to extend your project design.
 
 ### Controllers
 

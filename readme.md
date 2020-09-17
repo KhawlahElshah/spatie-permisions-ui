@@ -6,7 +6,7 @@ This package provides ui views for laravel permissions package made by Spatie
 
 ### Install spatie permissions
 
-follow the steps provides by the package on this [link](https://spatie.be/docs/laravel-permission/v3/installation-laravel), and make sure to always install latest version.
+Install and configure spatie permissions package [link](https://spatie.be/docs/laravel-permission/v3/installation-laravel), and make sure to always install latest version.
 
 ### Install permissions UI
 
@@ -30,7 +30,7 @@ php artisan vendor:publish --provider="ISOM\SpatiePermissionsUI\SpatiePermission
 
 ## Usage
 
-You can find then **permissions, roles, users roles and permissions attachment** on `resources/views` and `resources/views/components` you can easily change the layouts and elements classes to extend your project design.
+You can find the **permissions, roles, users roles and permissions attachment** views and components `resources/views` and `resources/views/components` you can easily change the layouts and elements classes to extend your project design.
 
 ### Controllers
 

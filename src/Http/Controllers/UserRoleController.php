@@ -1,6 +1,6 @@
 <?php
 
-namespace ISOM\SpatiePermissionsUI;
+namespace ISOM\SpatiePermissionsUI\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Routing\Controller;

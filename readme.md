@@ -39,3 +39,9 @@ If you need to update the controllers, you can publish them to your project usin
 ```bash
 php artisan vendor:publish --provider="ISOMLY\SpatiePermissionsUI\SpatiePermissionsUiServiceProvider" --tag="controllers"
 ```
+
+## Todos:
+
+- [ ] Define middlewares to restrict permissions UI routes
+- [ ] Set the views classes using css framework as an option
+- [ ] Set the permissions and attachments controllers for multiple models not only user

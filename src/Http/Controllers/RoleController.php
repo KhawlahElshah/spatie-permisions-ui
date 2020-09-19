@@ -1,6 +1,6 @@
 <?php
 
-namespace ISOM\SpatiePermissionsUI;
+namespace ISOMLY\SpatiePermissionsUI\Http\Controllers;
 
 use Illuminate\Routing\Controller;
 use Spatie\Permission\Models\Permission;
@@ -12,22 +12,22 @@ class RoleController extends Controller
     {
         $roles = Role::all();
 
-        return view('roles.index', ['roles' => $roles]);
+        return view('spatie-permissions-ui::roles.index', ['roles' => $roles]);
     }
 
     public function create()
     {
         $permissions = Permission::all();
 
-        return view('roles.create', ['permissions' => $permissions]);
+        return view('spatie-permissions-ui::roles.create', ['permissions' => $permissions]);
     }
 
     public function store()
     {
         $data = request()->validate([
-            'name'        => 'required|string|unique:roles,name,except,id',
-            'permissions' => 'nullable|array',
-
+            'name'          => 'required|string|unique:roles,name,except,id',
+            'permissions'   => 'nullable|array',
+            'permissions.*' => 'nullable|exists:permissions,id',
         ]);
 
         $role = Role::create($data);
@@ -43,14 +43,15 @@ class RoleController extends Controller
     {
         $permissions = Permission::all();
 
-        return view('roles.edit', ['permissions' => $permissions, 'role' => $role]);
+        return view('spatie-permissions-ui::roles.edit', ['permissions' => $permissions, 'role' => $role]);
     }
 
     public function update(Role $role)
     {
         $data = request()->validate([
-            'name'        => 'required|string|unique:roles,name,' . $role->id,
-            'permissions' => 'nullable|array',
+            'name'          => 'required|string|unique:roles,name,' . $role->id,
+            'permissions'   => 'nullable|array',
+            'permissions.*' => 'nullable|exists:permissions,id',
         ]);
 
         $role->update($data);

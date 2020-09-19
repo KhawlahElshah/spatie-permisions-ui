@@ -19,23 +19,23 @@ composer require isom/spatie-permissions-ui
 - Publish views, translation using:
 
 ```bash
-php artisan vendor:publish --provider="ISOM\SpatiePermissionsUI\SpatiePermissionsUiServiceProvider" --tag="views"
+php artisan vendor:publish --provider="ISOMLY\SpatiePermissionsUI\SpatiePermissionsUiServiceProvider" --tag="views"
 ```
 
 - If you want to change translations you can optionally publish them using:
 
 ```bash
-php artisan vendor:publish --provider="ISOM\SpatiePermissionsUI\SpatiePermissionsUiServiceProvider" --tag="lang"
+php artisan vendor:publish --provider="ISOMLY\SpatiePermissionsUI\SpatiePermissionsUiServiceProvider" --tag="lang"
 ```
 
 ## Usage
 
-You can find the **permissions, roles, users roles and permissions attachment** views and components `resources/views` and `resources/views/components` you can easily change the layouts and elements classes to extend your project design.
+You can find the **permissions, roles, users roles and permissions attachment** views and components `resources/views/vendor/spatie-permissions-ui` you can easily change the layouts and elements classes to extend your project design.
 
 ### Controllers
 
 If you need to update the controllers, you can publish them to your project using:
 
 ```bash
-php artisan vendor:publish --provider="ISOM\SpatiePermissionsUI\SpatiePermissionsUiServiceProvider" --tag="controllers"
+php artisan vendor:publish --provider="ISOMLY\SpatiePermissionsUI\SpatiePermissionsUiServiceProvider" --tag="controllers"
 ```

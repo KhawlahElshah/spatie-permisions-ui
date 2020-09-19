@@ -1,6 +1,6 @@
 <?php
 
-namespace ISOM\SpatiePermissionsUI;
+namespace ISOMLY\SpatiePermissionsUI\Http\Controllers;
 
 use Illuminate\Routing\Controller;
 use Spatie\Permission\Models\Permission;
@@ -11,12 +11,12 @@ class PermissionController extends Controller
     {
         $permissions = Permission::all();
 
-        return view('permissions.index', ['permissions' => $permissions]);
+        return view('spatie-permissions-ui::permissions.index', ['permissions' => $permissions]);
     }
 
     public function create()
     {
-        return view('permissions.create');
+        return view('spatie-permissions-ui::permissions.create');
     }
 
     public function store()
@@ -32,7 +32,7 @@ class PermissionController extends Controller
 
     public function edit(Permission $permission)
     {
-        return view('permissions.edit', ['permission' => $permission]);
+        return view('spatie-permissions-ui::permissions.edit', ['permission' => $permission]);
     }
 
     public function update(Permission $permission)

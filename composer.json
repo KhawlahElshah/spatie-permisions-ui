@@ -1,5 +1,5 @@
 {
-    "name": "isom/spatie-permissions-ui",
+    "name": "isomly/spatie-permissions-ui",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -23,18 +23,18 @@
     },
     "autoload": {
         "psr-4": {
-            "ISOM\\SpatiePermissionsUI\\": "src/"
+            "ISOMLY\\SpatiePermissionsUI\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "ISOM\\SpatiePermissionsUI\\Tests\\": "tests"
+            "ISOMLY\\SpatiePermissionsUI\\Tests\\": "tests"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "ISOM\\SpatiePermissionsUI\\SpatiePermissionsUiServiceProvider"
+                "ISOMLY\\SpatiePermissionsUI\\SpatiePermissionsUiServiceProvider"
             ]
         }
     }

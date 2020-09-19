@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use ISOM\SpatiePermissionsUI\Http\Controllers\PermissionController;
-use ISOM\SpatiePermissionsUI\Http\Controllers\RoleController;
-use ISOM\SpatiePermissionsUI\Http\Controllers\UserPermissionController;
-use ISOM\SpatiePermissionsUI\Http\Controllers\UserRoleController;
+use ISOMLY\SpatiePermissionsUI\Http\Controllers\PermissionController;
+use ISOMLY\SpatiePermissionsUI\Http\Controllers\RoleController;
+use ISOMLY\SpatiePermissionsUI\Http\Controllers\UserPermissionController;
+use ISOMLY\SpatiePermissionsUI\Http\Controllers\UserRoleController;
 
 Route::group(['middleware' => ['web']], function () {
 

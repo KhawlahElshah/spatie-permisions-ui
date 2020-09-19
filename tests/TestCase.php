@@ -1,10 +1,10 @@
 <?php
 
-namespace ISOM\SpatiePermissionsUI\Tests;
+namespace ISOMLY\SpatiePermissionsUI\Tests;
 
-use Illuminate\Foundation\Application;
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use ISOM\SpatiePermissionsUI\SpatiePermissionsUiServiceProvider;
+use ISOMLY\SpatiePermissionsUI\SpatiePermissionsUiServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
@@ -18,11 +18,16 @@ class TestCase extends Orchestra
         $this->setUpDatabase($this->app);
     }
 
-    protected function setUpDatabase(Application $app)
+    protected function setUpDatabase($app)
     {
-        include_once __DIR__ . '/../vendor/spatie/laravel-permission/database/migrations/create_permission_tables.php.stub';
+        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
 
-        (new \CreatePermissionTables())->up();
+
+        $app['db']->connection()->getSchemaBuilder()->create('users', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->softDeletes();
+        });
     }
 
     protected function getPackageProviders($app)
@@ -30,5 +35,28 @@ class TestCase extends Orchestra
         return [
             SpatiePermissionsUiServiceProvider::class,
         ];
+    }
+
+    protected function getEnvironmentSetUp($app)
+    {
+        $app['config']->set('permission.table_names', [
+            'roles'                 => 'roles',
+            'permissions'           => 'permissions',
+            'model_has_permissions' => 'model_has_permissions',
+            'model_has_roles'       => 'model_has_roles',
+            'role_has_permissions'  => 'role_has_permissions',
+        ]);
+
+        $app['config']->set('permission.models', [
+            'permission' => \Spatie\Permission\Models\Permission::class,
+            'role' => \Spatie\Permission\Models\Role::class,
+        ]);
+
+        $app['config']->set('permission.column_names', [
+            'model_morph_key' => 'model_id',
+        ]);
+
+        // Use test User model for users provider
+        $app['config']->set('auth.providers.users.model', User::class);
     }
 }

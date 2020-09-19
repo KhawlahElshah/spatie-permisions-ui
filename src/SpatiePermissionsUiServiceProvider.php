@@ -1,6 +1,6 @@
 <?php
 
-namespace ISOM\SpatiePermissionsUI;
+namespace ISOMLY\SpatiePermissionsUI;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -13,10 +13,10 @@ class SpatiePermissionsUiServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->make('ISOM\SpatiePermissionsUI\Http\Controllers\PermissionController');
-        $this->app->make('ISOM\SpatiePermissionsUI\Http\Controllers\RoleController');
-        $this->app->make('ISOM\SpatiePermissionsUI\Http\Controllers\UserPermissionController');
-        $this->app->make('ISOM\SpatiePermissionsUI\Http\Controllers\UserRoleController');
+        $this->app->make('ISOMLY\SpatiePermissionsUI\Http\Controllers\PermissionController');
+        $this->app->make('ISOMLY\SpatiePermissionsUI\Http\Controllers\RoleController');
+        $this->app->make('ISOMLY\SpatiePermissionsUI\Http\Controllers\UserPermissionController');
+        $this->app->make('ISOMLY\SpatiePermissionsUI\Http\Controllers\UserRoleController');
     }
 
     /**

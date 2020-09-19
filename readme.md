@@ -13,7 +13,7 @@ Install and configure spatie permissions package [link](https://spatie.be/docs/l
 - Install it via composer:
 
 ```bash
-composer require isom/spatie-permissions-ui
+composer require isomly/spatie-permissions-ui
 ```
 
 - Publish views, translation using:

@@ -4,6 +4,7 @@ namespace ISOMLY\SpatiePermissionsUI\Tests;
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use ISOMLY\SpatiePermissionsUI\Facades\PermissionsUI;
 use ISOMLY\SpatiePermissionsUI\SpatiePermissionsUiServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
@@ -16,12 +17,6 @@ class TestCase extends Orchestra
         parent::setUp();
 
         $this->setUpDatabase($this->app);
-
-        file_put_contents(
-            __DIR__ . '/../src/Http/routes.php',
-            file_get_contents(__DIR__ . '/../src/stubs/routes.stub'),
-            FILE_APPEND
-        );
     }
 
     protected function setUpDatabase($app)
@@ -40,6 +35,13 @@ class TestCase extends Orchestra
     {
         return [
             SpatiePermissionsUiServiceProvider::class,
+        ];
+    }
+
+    protected function getPackageAliases($app)
+    {
+        return [
+            'PermissionsUI' => PermissionsUI::class,
         ];
     }
 

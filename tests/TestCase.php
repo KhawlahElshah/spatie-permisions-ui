@@ -16,6 +16,12 @@ class TestCase extends Orchestra
         parent::setUp();
 
         $this->setUpDatabase($this->app);
+
+        file_put_contents(
+            __DIR__ . '/../src/Http/routes.php',
+            file_get_contents(__DIR__ . '/../src/stubs/routes.stub'),
+            FILE_APPEND
+        );
     }
 
     protected function setUpDatabase($app)

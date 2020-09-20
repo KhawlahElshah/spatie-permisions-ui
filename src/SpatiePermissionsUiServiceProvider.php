@@ -2,6 +2,7 @@
 
 namespace ISOMLY\SpatiePermissionsUI;
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class SpatiePermissionsUiServiceProvider extends ServiceProvider
@@ -26,6 +27,11 @@ class SpatiePermissionsUiServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->commands([
+            InstallCommand::class,
+        ]);
+
+        Route::mixin(new PermissionsUiRouteMethods);
         $this->loadRoutesFrom(__DIR__ . '/Http/routes.php');
         $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'spatie-permissions-ui');
         $this->bootResources();

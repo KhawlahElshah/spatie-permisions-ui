@@ -23,7 +23,6 @@ class TestCase extends Orchestra
     {
         $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
 
-
         $app['db']->connection()->getSchemaBuilder()->create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');

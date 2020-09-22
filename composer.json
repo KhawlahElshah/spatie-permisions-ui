@@ -36,6 +36,9 @@
             "providers": [
                 "ISOMLY\\SpatiePermissionsUI\\SpatiePermissionsUiServiceProvider"
             ]
+        },
+        "aliases": {
+            "PermissionsUI": "ISOMLY\\SpatiePermissionsUI\\Facades\\PermissionsUI"
         }
     }
 }

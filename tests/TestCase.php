@@ -4,6 +4,7 @@ namespace ISOMLY\SpatiePermissionsUI\Tests;
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use ISOMLY\SpatiePermissionsUI\Facades\PermissionsUI;
 use ISOMLY\SpatiePermissionsUI\SpatiePermissionsUiServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
@@ -22,7 +23,6 @@ class TestCase extends Orchestra
     {
         $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
 
-
         $app['db']->connection()->getSchemaBuilder()->create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
@@ -34,6 +34,13 @@ class TestCase extends Orchestra
     {
         return [
             SpatiePermissionsUiServiceProvider::class,
+        ];
+    }
+
+    protected function getPackageAliases($app)
+    {
+        return [
+            'PermissionsUI' => PermissionsUI::class,
         ];
     }
 

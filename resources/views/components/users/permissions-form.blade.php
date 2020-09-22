@@ -1,6 +1,7 @@
-@props(['permissions', 'user'])
+@props(['permissions', 'model'])
 
-<form action="{{ route('users.attach-permissions', $user) }}" method="post">
+<form action="{{ route('models.attach-permissions', ['resource' => 'users', 'resourceId' => $model->id]) }}"
+    method="post">
     @csrf
     @method('PATCH')
 
@@ -13,7 +14,7 @@
             <div class="w-1/2 my-1 flex items-center text-gray-700">
                 <label>
                     <input class="h-4 w-4" type="checkbox" name="permissions[]" value="{{ $permission->id }}"
-                        {{  in_array($permission->name, $user->getAllPermissions()->pluck('name')->toArray()) ? 'checked' : '' }} />
+                        {{  in_array($permission->name, $model->getAllPermissions()->pluck('name')->toArray()) ? 'checked' : '' }} />
                     <span>
                         {{ __($permission->name) }}
                     </span>

@@ -2,36 +2,35 @@
 
 namespace ISOMLY\SpatiePermissionsUI\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Routing\Controller;
 use Spatie\Permission\Models\Role;
 
-class UserRoleController extends Controller
+class ModelRoleController extends Controller
 {
-    public function edit($userId)
+    public function edit($resource, $resourceId)
     {
-        $userClass = config('auth.providers.users.model');
-        $user = $userClass::find($userId);
+        $modelClass = getModelForResource($resource);
+        $model = $modelClass::find($resourceId);
 
         $roles = Role::all();
 
         return view('spatie-permissions-ui::users.roles-edit', [
             'roles' => $roles,
-            'user'  => $user,
+            'model' => $model,
         ]);
     }
 
-    public function update($userId)
+    public function update($resource, $resourceId)
     {
-        $userClass = config('auth.providers.users.model');
-        $user = $userClass::find($userId);
+        $modelClass = getModelForResource($resource);
+        $model = $modelClass::find($resourceId);
 
         $data = request()->validate([
             'roles'   => 'required|array|min:1',
             'roles.*' => 'required|exists:roles,id',
         ]);
 
-        $user->syncRoles($data['roles']);
+        $model->syncRoles($data['roles']);
 
         return redirect()->back();
     }

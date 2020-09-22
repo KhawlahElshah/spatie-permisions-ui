@@ -1,6 +1,6 @@
-@props(['roles', 'user'])
+@props(['roles', 'model'])
 
-<form action="{{ route('users.attach-roles', $user) }}" method="post">
+<form action="{{ route('models.attach-roles', ['resource' => 'users', 'resourceId' => $model]) }}" method="post">
     @csrf
     @method('PATCH')
 
@@ -13,7 +13,7 @@
             <div class="w-1/2 my-1 flex items-center text-gray-700">
                 <label>
                     <input class="h-4 w-4" type="checkbox" name="roles[]" value="{{ $role->id }}"
-                        {{  in_array($role->name, $user->getRoleNames()->toArray()) ? 'checked' : '' }} />
+                        {{  in_array($role->name, $model->getRoleNames()->toArray()) ? 'checked' : '' }} />
                     <span>
                         {{ __($role->name) }}
                     </span>

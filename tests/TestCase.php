@@ -28,6 +28,12 @@ class TestCase extends Orchestra
             $table->string('name');
             $table->softDeletes();
         });
+
+        $app['db']->connection()->getSchemaBuilder()->create('admins', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->softDeletes();
+        });
     }
 
     protected function getPackageProviders($app)
@@ -63,7 +69,8 @@ class TestCase extends Orchestra
             'model_morph_key' => 'model_id',
         ]);
 
-        // Use test User model for users provider
-        $app['config']->set('auth.providers.users.model', User::class);
+        // Use test User model for models provider
+        $app['config']->set('permissionsui.resources.users', User::class);
+        $app['config']->set('permissionsui.resources.admins', Admin::class);
     }
 }

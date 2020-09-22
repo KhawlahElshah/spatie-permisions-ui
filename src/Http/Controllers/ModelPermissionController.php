@@ -5,32 +5,32 @@ namespace ISOMLY\SpatiePermissionsUI\Http\Controllers;
 use Illuminate\Routing\Controller;
 use Spatie\Permission\Models\Permission;
 
-class UserPermissionController extends Controller
+class ModelPermissionController extends Controller
 {
-    public function edit($userId)
+    public function edit($resource, $resourceId)
     {
-        $userClass = config('auth.providers.users.model');
-        $user = $userClass::find($userId);
+        $modelClass = getModelForResource($resource);
+        $model = $modelClass::find($resourceId);
 
         $permissions = Permission::all();
 
         return view('spatie-permissions-ui::users.permissions-edit', [
             'permissions' => $permissions,
-            'user'        => $user,
+            'model'       => $model,
         ]);
     }
 
-    public function update($userId)
+    public function update($resource, $resourceId)
     {
-        $userClass = config('auth.providers.users.model');
-        $user = $userClass::find($userId);
+        $modelClass = getModelForResource($resource);
+        $model = $modelClass::find($resourceId);
 
         $data = request()->validate([
             'permissions'   => 'required|array|min:1',
             'permissions.*' => 'required|exists:permissions,id',
         ]);
 
-        $user->syncPermissions($data['permissions']);
+        $model->syncPermissions($data['permissions']);
 
         return redirect()->back();
     }

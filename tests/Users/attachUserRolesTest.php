@@ -29,6 +29,26 @@ class attachUserRolesTest extends TestCase
     /**
      *@test
      */
+    function it_can_attach_roles_to_a_admin()
+    {
+        $admin = Admin::create(['name' => 'john Doe']);
+        $role = Role::create(['name' => 'manager']);
+
+        $this->get("/admins/{$admin->id}/roles")->assertOk();
+        $this->patch("/admins/{$admin->id}/roles", [
+            'roles' => [$role->id],
+        ])
+            ->assertRedirect("/admins/{$admin->id}/roles");
+
+        $this->assertDatabaseHas('model_has_roles', [
+            'model_id' => $admin->id,
+            'role_id'  => $role->id,
+        ]);
+    }
+
+    /**
+     *@test
+     */
     function user_attached_roles_is_required()
     {
         $user = User::create(['name' => 'john Doe']);

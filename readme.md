@@ -40,8 +40,42 @@ If you need to update the controllers, you can publish them to your project usin
 php artisan vendor:publish --provider="ISOMLY\SpatiePermissionsUI\SpatiePermissionsUiServiceProvider" --tag="controllers"
 ```
 
+### Routes
+
+Automatically the package routes are registered and you can use them
+
+```php
+    $this->resource('permissions', \ISOMLY\SpatiePermissionsUI\Http\Controllers\PermissionController::class)->except('show');
+    $this->resource('roles', \ISOMLY\SpatiePermissionsUI\Http\Controllers\RoleController::class)->except('show');
+
+    Route::get('users/{user}/permissions', [ISOMLY\SpatiePermissionsUI\Http\Controllers\UserPermissionController::class, 'edit']);
+    Route::patch('users/{user}/permissions', [ISOMLY\SpatiePermissionsUI\Http\Controllers\UserPermissionController::class, 'update'])->name('users.attach-permissions');
+
+    Route::get('users/{user}/roles', [ISOMLY\SpatiePermissionsUI\Http\Controllers\UserRoleController::class, 'edit']);
+    Route::patch('users/{user}/roles', [ISOMLY\SpatiePermissionsUI\Http\Controllers\UserRoleController::class, 'update'])->name('users.attach-roles');
+```
+
+If you need to authorize routes access you can publish the package routes group using
+
+```bash
+php artisan permissions-ui:publish-routes
+```
+
+which will add the following to your `routes/web.php`
+
+```
+\ISOMLY\SpatiePermissionsUI\Facades\PermissionsUI::routes();
+```
+
+so now you can add custom middleware to these routes, example:
+
+```
+Route::group(['middleware' => 'auth'], function () {
+    PermissionsUI::routes();
+});
+```
+
 ## Todos:
 
-- [ ] Define middlewares to restrict permissions UI routes
 - [ ] Set the views classes using css framework as an option
 - [ ] Set the permissions and attachments controllers for multiple models not only user

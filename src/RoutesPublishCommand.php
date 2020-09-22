@@ -4,14 +4,14 @@ namespace ISOMLY\SpatiePermissionsUI;
 
 use Illuminate\Console\Command;
 
-class InstallCommand extends Command
+class RoutesPublishCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'permissions-ui:install';
+    protected $signature = 'permissions-ui:publish-routes';
 
     /**
      * The console command description.

@@ -10,7 +10,7 @@ class ModelPermissionController extends Controller
     public function edit($resource, $resourceId)
     {
         $modelClass = getModelForResource($resource);
-        $model = $modelClass::find($resourceId);
+        $model = $modelClass::findOrFail($resourceId);
 
         $permissions = Permission::all();
 
@@ -23,7 +23,7 @@ class ModelPermissionController extends Controller
     public function update($resource, $resourceId)
     {
         $modelClass = getModelForResource($resource);
-        $model = $modelClass::find($resourceId);
+        $model = $modelClass::findOrFail($resourceId);
 
         $data = request()->validate([
             'permissions'   => 'required|array|min:1',

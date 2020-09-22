@@ -10,7 +10,7 @@ class ModelRoleController extends Controller
     public function edit($resource, $resourceId)
     {
         $modelClass = getModelForResource($resource);
-        $model = $modelClass::find($resourceId);
+        $model = $modelClass::findOrFail($resourceId);
 
         $roles = Role::all();
 
@@ -23,7 +23,7 @@ class ModelRoleController extends Controller
     public function update($resource, $resourceId)
     {
         $modelClass = getModelForResource($resource);
-        $model = $modelClass::find($resourceId);
+        $model = $modelClass::findOrFail($resourceId);
 
         $data = request()->validate([
             'roles'   => 'required|array|min:1',

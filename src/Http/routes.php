@@ -1,3 +1,4 @@
 <?php
 
-PermissionsUI::routes();
+
+\ISOMLY\SpatiePermissionsUI\Facades\PermissionsUI::routes();

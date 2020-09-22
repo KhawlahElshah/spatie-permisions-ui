@@ -5,6 +5,7 @@ namespace ISOMLY\SpatiePermissionsUI;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use ISOMLY\SpatiePermissionsUI\PermissionsUI;
+use ISOMLY\SpatiePermissionsUI\RoutesPublishCommand;
 
 class SpatiePermissionsUiServiceProvider extends ServiceProvider
 {
@@ -33,7 +34,7 @@ class SpatiePermissionsUiServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->commands([
-            InstallCommand::class,
+            RoutesPublishCommand::class,
         ]);
 
         Route::mixin(new PermissionsUI);

@@ -45,14 +45,14 @@ php artisan vendor:publish --provider="ISOMLY\SpatiePermissionsUI\SpatiePermissi
 Automatically the package routes are registered and you can use them
 
 ```php
-    $this->resource('permissions', \ISOMLY\SpatiePermissionsUI\Http\Controllers\PermissionController::class)->except('show');
-    $this->resource('roles', \ISOMLY\SpatiePermissionsUI\Http\Controllers\RoleController::class)->except('show');
+        Route::resource('permissions', \ISOMLY\SpatiePermissionsUI\Http\Controllers\PermissionController::class)->except('show');
+        Route::resource('roles', \ISOMLY\SpatiePermissionsUI\Http\Controllers\RoleController::class)->except('show');
 
-    Route::get('users/{user}/permissions', [ISOMLY\SpatiePermissionsUI\Http\Controllers\UserPermissionController::class, 'edit']);
-    Route::patch('users/{user}/permissions', [ISOMLY\SpatiePermissionsUI\Http\Controllers\UserPermissionController::class, 'update'])->name('users.attach-permissions');
+        Route::get('{resource}/{resourceId}/permissions', [\ISOMLY\SpatiePermissionsUI\Http\Controllers\ModelPermissionController::class, 'edit']);
+        Route::patch('{resource}/{resourceId}/permissions', [\ISOMLY\SpatiePermissionsUI\Http\Controllers\ModelPermissionController::class, 'update'])->name('models.attach-permissions');
 
-    Route::get('users/{user}/roles', [ISOMLY\SpatiePermissionsUI\Http\Controllers\UserRoleController::class, 'edit']);
-    Route::patch('users/{user}/roles', [ISOMLY\SpatiePermissionsUI\Http\Controllers\UserRoleController::class, 'update'])->name('users.attach-roles');
+        Route::get('{resource}/{resourceId}/roles', [\ISOMLY\SpatiePermissionsUI\Http\Controllers\ModelRoleController::class, 'edit']);
+        Route::patch('{resource}/{resourceId}/roles', [\ISOMLY\SpatiePermissionsUI\Http\Controllers\ModelRoleController::class, 'update'])->name('models.attach-roles');
 ```
 
 If you need to authorize routes access you can publish the package routes group using
@@ -63,7 +63,7 @@ php artisan permissions-ui:publish-routes
 
 which will add the following to your `routes/web.php`
 
-```
+```bash
 \ISOMLY\SpatiePermissionsUI\Facades\PermissionsUI::routes();
 ```
 
@@ -75,7 +75,50 @@ Route::group(['middleware' => 'auth'], function () {
 });
 ```
 
+### Multi models permissions ui
+
+if you need to generate the permissions and roles attachment to a model ui for multiple models you need first to publish the package config file
+
+```bash
+php artisan vendor:publish --provider="ISOMLY\SpatiePermissionsUI\SpatiePermissionsUiServiceProvider" --tag="config"
+```
+
+a config file will be generated on `config/permissionsui.php` with these default config options
+
+```php
+return [
+    'resources' => [
+        'users' => App\Models\User::class,
+    ],
+];
+```
+
+you can add another `resource` indicating the resource name with will be used on the routes and the model it refers to, like following:
+
+```php
+return [
+    'resources' => [
+        'users' => App\Models\User::class,
+        'admins' => App\Models\Admin::class,
+    ],
+];
+```
+
+which will enable you to call routes like following
+
+```
+[GET] users/1/roles
+[PATCH] users/1/roles
+[GET] users/1/permissions
+[PATCH] users/1/permissions
+
+[GET] admins/1/roles
+[PATCH] admins/1/roles
+[GET] admins/1/permissions
+[PATCH] admins/1/permissions
+
+```
+
 ## Todos:
 
 - [ ] Set the views classes using css framework as an option
-- [ ] Set the permissions and attachments controllers for multiple models not only user

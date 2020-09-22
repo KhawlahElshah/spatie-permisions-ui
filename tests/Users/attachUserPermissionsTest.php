@@ -29,6 +29,26 @@ class attachUserPermissionsTest extends TestCase
     /**
      *@test
      */
+    function it_can_attach_permissions_to_an_admin()
+    {
+        $admin = Admin::create(['name' => 'john Doe']);
+        $permission = Permission::create(['name' => 'create::permission']);
+
+        $this->get("/admins/{$admin->id}/permissions")->assertOk();
+        $this->patch("/admins/{$admin->id}/permissions", [
+            'permissions' => [$permission->id],
+        ])
+            ->assertRedirect("/admins/{$admin->id}/permissions");
+
+        $this->assertDatabaseHas('model_has_permissions', [
+            'model_id'       => $admin->id,
+            'permission_id' => $permission->id,
+        ]);
+    }
+
+    /**
+     *@test
+     */
     function user_attached_permissions_is_required()
     {
         $user = User::create(['name' => 'john Doe']);

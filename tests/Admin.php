@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Model implements AuthorizableContract, AuthenticatableContract
+class Admin extends Model implements AuthorizableContract, AuthenticatableContract
 {
     use HasRoles, Authorizable, Authenticatable;
 
@@ -17,7 +17,7 @@ class User extends Model implements AuthorizableContract, AuthenticatableContrac
 
     public $timestamps = false;
 
-    protected $table = 'users';
+    protected $table = 'admins';
 
     protected $guard_name = 'web';
 }
